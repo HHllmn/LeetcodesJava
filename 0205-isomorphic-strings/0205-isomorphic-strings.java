@@ -1,7 +1,7 @@
 class Solution {
     public boolean isIsomorphic(String s, String t) {
-        int[] map1=new int[128];
-        int[] map2=new int[128];
+        int[] map1=new int[200];
+        int[] map2=new int[200];
 
         for(int i=0; i<s.length(); i++)
         {
