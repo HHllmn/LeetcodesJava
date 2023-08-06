@@ -1,16 +1,23 @@
 class Solution {
     public boolean isHappy(int n) {
-        Set<Integer> nums = new HashSet<>();
-        while (n != 1 && !nums.contains(n)){
-            nums.add(n);
-            int sum = 0;
-            while (n != 0) {
-                int digit = n % 10;
-                sum += digit * digit;
-                n /= 10;
-            }
-            n = sum;
+        int slow = n;
+        int fast = n;
+
+        do{
+            slow = sumSquaredDigits(slow);
+            fast = sumSquaredDigits(sumSquaredDigits(fast));
+            if (slow == 1) return true;
+        }while(slow != fast);
+
+        return false;
+    }
+   
+    private int sumSquaredDigits(int num){
+        int sum = 0;
+        while (num != 0){
+            sum += (num % 10) * (num%10);
+            num /= 10;
         }
-        return (n==1);
+        return sum;
     }
 }
