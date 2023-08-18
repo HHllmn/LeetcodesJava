@@ -3,19 +3,10 @@ class Solution {
         int iA = 0;
         int iB = numbers.length - 1;
 
-        while (iA < iB){
-            int sum = numbers[iA] + numbers[iB];
-
-            if (sum == target){
-                return new int[] {iA + 1, iB + 1};
-            }
-            else if (sum < target){
-                iA++;
-            }
-            else{
-                iB--;
-            }
+        while (numbers[iA] + numbers[iB] != target){
+            if (numbers[iA] + numbers[iB] < target) iA++;
+            else iB--;
         }
-        return new int[] {-1};
+        return new int[] {iA + 1, iB + 1};
     }
 }
