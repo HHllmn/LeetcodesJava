@@ -7,7 +7,8 @@ class Solution {
         while (left < right){
             int w = right - left;
             int h = Math.min(height[left], height[right]);
-            max = Math.max(max, w*h);
+            int area = w*h;
+            max = Math.max(max, area);
             if (height[left] < height[right]) left++;
             else if (height[left] > height[right]) right--;
             else{
