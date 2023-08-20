@@ -14,7 +14,7 @@ class Solution {
                 temp = height[right] * (right - left);
                 right--;
             }
-            max = temp > max ? temp : max;
+            if (temp > max) max = temp;
         }
         return max;
     }
