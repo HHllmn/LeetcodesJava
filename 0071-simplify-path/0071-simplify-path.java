@@ -1,16 +1,19 @@
 class Solution {
     public String simplifyPath(String path) {
-        Deque<String> stack = new ArrayDeque<String>();
-        Set<String> skip = new HashSet<>(Arrays.asList("..",".",""));
-
-        for (String directory : path.split("/")){
-            if (directory.equals("..") && !stack.isEmpty()) stack.pop();
-            else if (!skip.contains(directory)) stack.push(directory);
+        Stack<String> stack = new Stack<>();
+        String[] p = path.split("/");
+        
+        for(int i = 0; i < p.length; i++){
+            if(!stack.isEmpty()  && p[i].equals("..")) stack.pop();
+            else if(!p[i].equals("") && !p[i].equals(".") && !p[i].equals("..")) stack.push(p[i]);
         }
-
-        String out = "";
-
-        for (String directory : stack) out = "/" + directory + out;
-        return out.isEmpty() ? "/" : out;
+        
+        StringBuilder out = new StringBuilder();
+        if(stack.isEmpty()) return "/";
+        while(!stack.isEmpty()){
+            out.insert(0, stack.pop()).insert(0,"/");
+        }
+        
+        return out.toString();
     }
 }
