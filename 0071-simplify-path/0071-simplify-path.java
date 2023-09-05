@@ -1,7 +1,7 @@
 class Solution {
     public String simplifyPath(String path) {
         Deque<String> stack = new ArrayDeque<String>();
-        List<String> skip = new ArrayList<>(Arrays.asList("..", ".", ""));
+        Set<String> skip = new HashSet<>(Arrays.asList("..",".",""));
 
         for (String directory : path.split("/")){
             if (directory.equals("..") && !stack.isEmpty()) stack.pop();
