@@ -1,17 +1,14 @@
 class Solution {
     public int singleNumber(int[] nums) {
-        Map<Integer, Integer> map = new HashMap<>();
+        int res = 0;
 
-        for (int item : nums){
-            map.put(item, map.getOrDefault(item, 0) + 1);
+        for (int i = 0; i < 32; i++){
+            int sum = 0;
+            for (int num : nums) sum = sum + (num >> i & 1);
+            sum = sum % 3;
+            res = res | sum << i;
         }
 
-        for (Map.Entry<Integer, Integer> entry : map.entrySet()){
-            if (entry.getValue() == 1){
-                return entry.getKey();
-            }
-        }
-
-        return -1;
+        return res;
     }
 }
